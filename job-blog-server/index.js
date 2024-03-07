@@ -1,10 +1,11 @@
 const express = require('express')
 const app = express()
+const TestAPi = require("./models/jobs")
 const cors = require('cors')
 const port = process.env.PORT || 5000;
 require('dotenv').config()
 // console.log(process.env.DB_USER)
-// console.log(process.env.DB_PASSSWORD)
+console.log(`running on port ${port}`)
 
 //middleware
 app.use(express.json())
@@ -18,16 +19,11 @@ app.use(cors())
 
 
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
+// const uri = `mongodb://localhost:27017`
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSSWORD}@job-portal-server.pe3pwyu.mongodb.net/?retryWrites=true&w=majority&appName=Job-portal-server`;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
-const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  }
-});
+const client = new MongoClient(uri);
 
 async function run() {
   try {
@@ -35,8 +31,8 @@ async function run() {
     await client.connect();
 
     //create  db
-    const db = client.db("myJobBlog");
-    const jobsCollections = db.collection("demoJobs");
+    const db = client.db("christine");
+    const jobsCollections = db.collection("jobsCollections");
 
 
   //post a job
@@ -57,6 +53,9 @@ async function run() {
 
 
   // Assuming you're using Express.js
+  app.get('/',(req,res)=>{
+    res.send("hello world")
+  })
 app.post('/post-job', async (req, res) => {
   const job = req.body; // Assuming job data is sent in the request body
   try {
@@ -69,25 +68,31 @@ app.post('/post-job', async (req, res) => {
 
 
    //get all jobs
-   app.get("/all-jobs", async (req, res) => {
-    // No need to convert it to an array it to an array 
+   app.get("/alljobs", async (req, res) => {
+    // No need to convert it to an array it to an array
     // const jobs = await db.demoJobs.find()
-    const jobs = await jobsCollections.find({}).toArray();
-    res.send(jobs);  
+     //  const jobs = await TestAPi.find() ;
+     const jobs = await jobsCollections.find();
+     // Print returned documents
+     const  Alljobs = []
+     for await (const doc of jobs) {
+      Alljobs.push(doc);
+     }
+    res.json(Alljobs);  
 })
 
 //get jobs using id
 app.get("/all-jobs/:id", async(req, res) =>{
   const id = req.params.id;
   const job = await jobsCollections.findOne({_id: new ObjectId(id)})
-  res.send(job);
+  res.json(job);
 })
 
 //get jobs by email
    app.get("/myJobs/:email", async(req, res) =>{
     // console.log(req.params.email)
-    const jobs = await jobsCollections.find({postedBy : req.params.email}).toArray();
-    res.send(jobs);
+    const jobs = await jobsCollections.find({postedBy : req.params.email}) ;
+    res.res(jobs);
    })
 
    //delete a job
@@ -111,7 +116,7 @@ app.get("/all-jobs/:id", async(req, res) =>{
       },
     };
     const result = await jobsCollections.updateOne(filter, updateDoc, options);
-    res.send(result);
+    res.json(result);
    
    })
 

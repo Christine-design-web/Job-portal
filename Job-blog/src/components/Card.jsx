@@ -20,7 +20,7 @@ const Card = ({data}) => {
             <span className="flex items-center gap-2"><FiCalendar/>{postingDate}</span>
           </div>
 
-          <p className="text-base text-primary">{description}</p>
+          <p className="text-base line-clamp-6 text-primary">{description}</p>
         </div>
       </Link>
  

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { auth } from "../firebase/firebase.config";
 
 const MyJobs = () => {
     const [jobs, setJobs] = useState([]);
     const [searchText, setSearchText] = useState("");
     const [isLoading, setIsLoading] = useState(true);
 
+    const user = auth.currentUser;
 
     //set currentpage
     const [currentPage, setCurrentPage] = useState(1);
@@ -13,7 +15,7 @@ const MyJobs = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        fetch(`http://localhost:5000/myJobs/wangecichristine39@gmail.com`).then(res => res.json()).then(data => {
+        fetch(`http://localhost:5000/myJobs/wehackit@gmail.com`).then(res => res.json()).then(data => {
             setJobs(data);
             setIsLoading(false);
         });

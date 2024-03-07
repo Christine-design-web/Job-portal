@@ -22,10 +22,10 @@ const Createjob = () => {
         .then(res => res.json())
         .then(result => {
             console.log(result);
-            if (result && result.acknowledged === true) {
+            if (result && result.data.acknowledged === true) {
                 alert("Job posted Successfully!!!");
             } else {
-                alert("Job posted Successfully!!!");
+                alert("Job Creation Failed.Try Again");
             }
             reset();
         })

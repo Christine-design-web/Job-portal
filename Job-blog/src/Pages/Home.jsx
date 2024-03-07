@@ -16,13 +16,13 @@ const Home = () => {
   
   useEffect(()=> {
     setIsLoading(true);
-    fetch("http://localhost:5000/all-jobs").then(res => res.json()).then(data => {
-      // console.log(data)
+    fetch("http://localhost:5000/alljobs").then(res => res.json()).then(data => {
+      console.log(data)
       setJobs(data);
       setIsLoading(false);
     });
   }, [])
-  console.log(jobs)
+  // console.log(jobs)
 // handle input charge
   const [query, setQuery] = useState("");
   const handleInputChange = (event) => {
