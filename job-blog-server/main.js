@@ -8,7 +8,7 @@ const app = express();
 async function connectToMongoDB() {
     try {
         await mongoose.connect('mongodb://127.0.0.1/christine');
-        console.log('Connected to MongoDB');
+        // console.log('Connected to MongoDB');
     } catch (error) {
         console.error('Error connecting to MongoDB:', error);
         process.exit(1); // Exit the process with a non-zero status code
@@ -31,7 +31,7 @@ app.get('/documents', async (req, res) => {
 
 // Start the server
 app.listen(3000, () => {
-  console.log('Server is running on port 3000');
+  // console.log('Server is running on port 3000');
 });
 
 

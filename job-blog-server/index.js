@@ -31,8 +31,8 @@ async function run() {
     await client.connect();
 
     //create  db
-    const db = client.db("christine");
-    const jobsCollections = db.collection("jobsCollections");
+    const db = client.db("myJobBlog");
+    const jobsCollections = db.collection("demoJobs");
 
 
   //post a job
@@ -74,9 +74,10 @@ app.post('/post-job', async (req, res) => {
      //  const jobs = await TestAPi.find() ;
      const jobs = await jobsCollections.find();
      // Print returned documents
-     const  Alljobs = []
+     const Alljobs = []
      for await (const doc of jobs) {
-      Alljobs.push(doc);
+      // console.log(doc)
+       Alljobs.push(doc);
      }
     res.json(Alljobs);  
 })
@@ -90,9 +91,17 @@ app.get("/all-jobs/:id", async(req, res) =>{
 
 //get jobs by email
    app.get("/myJobs/:email", async(req, res) =>{
-    // console.log(req.params.email)
-    const jobs = await jobsCollections.find({postedBy : req.params.email}) ;
-    res.res(jobs);
+    const email =req.params.email
+    // console.log(email)
+    //  postedBy: 'wangecichristine39@gmail.com'
+     const jobs = await jobsCollections.find({ postedBy:email}) ;
+    // console.log(jobs.doc)
+     const Alljobs = []
+     for await (const doc of jobs) {
+       Alljobs.push(doc);
+     }
+
+     res.json(Alljobs);
    })
 
    //delete a job
@@ -123,7 +132,7 @@ app.get("/all-jobs/:id", async(req, res) =>{
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+    // console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } finally {
     // Ensures that the client will close when you finish/error
     // await client.close();
