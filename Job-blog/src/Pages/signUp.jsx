@@ -17,8 +17,10 @@ const Signup = () => {
         if (password === confirmPassword) {
             try {
                 await createUserWithEmailAndPassword(auth, email, password);
+                // Redirect to login page after successful signup
                 navigate("/login");
-            } catch {
+            } catch (error) {
+                console.error("Signup error:", error.message);
                 setNotice("Sorry, something went wrong. Please try again.");
             }
         } else {
@@ -36,15 +38,15 @@ const Signup = () => {
                         </div>
                     }
                     <div className="form-floating flex flex-col-reverse gap-[1em] mb-3">
-                        <input id="signupEmail" type="email" className="form-control  py-[1em] px-6 rounded-2xl text-[#fff]" aria-describedby="emailHelp" placeholder="name@example.com" value={email} onChange={(e) => setEmail(e.target.value)}></input>
+                        <input id="signupEmail" type="email" className="form-control  py-[1em] px-6 rounded-2xl text-primary" aria-describedby="emailHelp" placeholder="name@example.com" value={email} onChange={(e) => setEmail(e.target.value)}></input>
                         <label htmlFor="signupEmail" className="form-label">Enter an email address for your username</label>
                     </div>
                     <div className="form-floating flex flex-col-reverse gap-[1em] mb-3">
-                        <input id="signupPassword" type="password" className="form-control py-[1em] px-6 rounded-2xl text-[#fff] " placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
+                        <input id="signupPassword" type="password" className="form-control py-[1em] px-6 rounded-2xl text-primary " placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
                         <label htmlFor="signupPassword" className="form-label">Password</label>
                     </div>
                     <div className="form-floating flex flex-col-reverse gap-[1em] mb-3">
-                        <input id="confirmPassword" type="password" className="form-control py-[1em] px-6 rounded-2xl text-[#fff] " placeholder="Confirm Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}></input>
+                        <input id="confirmPassword" type="password" className="form-control py-[1em] px-6 rounded-2xl text-primary " placeholder="Confirm Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}></input>
                         <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
                     </div>
                     <div className="d-grid">

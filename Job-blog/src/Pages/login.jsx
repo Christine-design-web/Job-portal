@@ -30,11 +30,11 @@ const Login = () => {
                         </div>
                     }
                     <div className="form-floating flex flex-col-reverse gap-[1em] mb-3">
-                        <input type="email" className="form-control py-[1em] px-6 text-[#fff] rounded-2xl" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="name@example.com" value={email} onChange={(e) => setEmail(e.target.value)}></input>
+                        <input type="email" className="form-control py-[1em] px-6 text-primary rounded-2xl" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="name@example.com" value={email} onChange={(e) => setEmail(e.target.value)}></input>
                         <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
                     </div>
                     <div className="form-floating flex flex-col-reverse gap-[1em] mb-3">
-                        <input type="password" className="form-control py-[1em] px-6 text-[#fff] rounded-2xl" id="exampleInputPassword1" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
+                        <input type="password" className="form-control py-[1em] px-6 text-primary rounded-2xl" id="exampleInputPassword1" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
                         <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
                     </div>
                     <div className="d-grid">
