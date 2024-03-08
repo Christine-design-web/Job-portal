@@ -22,7 +22,7 @@ const Login = () => {
 
     return (
         <div className=" grid h-dvh place-content-center ">
-            <div className="grid mx-auto bg-[#234eac] p-[3em] rounded-2xl place-items-center">
+            <div className="grid mx-auto bg-blue p-[3em] rounded-2xl place-items-center">
                 <form className="col-md-4 mt-3 pt-3 pb-3">
                     {"" !== notice &&
                         <div className="alert alert-warning" role="alert">
