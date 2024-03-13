@@ -1,10 +1,5 @@
 #Getting Started
 
-
-https://github.com/Christine-design-web/Job-portal/blob/main/img1.jpg
-https://github.com/Christine-design-web/Job-portal/blob/main/img2.jpg
-https://github.com/Christine-design-web/Job-portal/blob/main/img3.jpg
-https://github.com/Christine-design-web/Job-portal/blob/main/img4.jpg
 This is an example of how you may give instructions on setting up your project locally. To get a local copy up and running follow these simple example steps.
 
 Prerequisites
