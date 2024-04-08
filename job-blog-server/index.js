@@ -35,23 +35,6 @@ async function run() {
     const jobsCollections = db.collection("demoJobs");
 
 
-  //post a job
-  // app.post('/post-job', async (req, res) => {
-  //   const body = req.body;
-  //   body.CreateAt = new Date();
-  //   // console.log(body)
-  //    const result = await jobsCollections.insertOne(body);
-  //    if(result.insertedId){
-  //     return res.status(200).send(result);
-  //    }else{
-  //     return res.status(404).send({
-  //       message: "Failed to create job",
-  //       status: false
-  //     })
-  //    }
-  // })
-
-
   // Assuming you're using Express.js
   app.get('/',(req,res)=>{
     res.send("hello world")
